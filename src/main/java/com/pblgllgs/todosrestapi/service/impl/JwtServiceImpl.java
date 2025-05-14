@@ -1,4 +1,4 @@
-package com.pblgllgs.todosrestapi.service;
+package com.pblgllgs.todosrestapi.service.impl;
 /*
  *
  * @author pblgl
@@ -6,6 +6,7 @@ package com.pblgllgs.todosrestapi.service;
  *
  */
 
+import com.pblgllgs.todosrestapi.service.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -43,13 +44,13 @@ public class JwtServiceImpl implements JwtService {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 
     @Override
     public Boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username = extractUsername(userDetails.getUsername());
+        final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
