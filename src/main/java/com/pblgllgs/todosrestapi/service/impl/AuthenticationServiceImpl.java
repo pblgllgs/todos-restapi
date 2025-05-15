@@ -57,7 +57,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password")
                 );
         String jwtToken = jwtService.generateToken(new HashMap<>(), user);
-        System.out.println(jwtToken);
         return new AuthenticationResponse(jwtToken);
     }
 

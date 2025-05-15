@@ -11,6 +11,8 @@ import com.pblgllgs.todosrestapi.request.RegisterRequest;
 import com.pblgllgs.todosrestapi.response.AuthenticationResponse;
 import com.pblgllgs.todosrestapi.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -41,7 +43,8 @@ public class AuthenticationController {
 
     @Operation(summary = "Login a user", description = "Login user")
     @PostMapping(value = "/login" ,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody @Valid AuthenticationRequest authRequest) {
+    public ResponseEntity<AuthenticationResponse> login(
+            @RequestBody @Valid AuthenticationRequest authRequest) {
         return new ResponseEntity<>(authenticationService.login(authRequest), HttpStatus.OK);
     }
 }

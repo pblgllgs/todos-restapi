@@ -11,6 +11,7 @@ import com.pblgllgs.todosrestapi.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,8 +31,14 @@ public class UserController {
     }
 
     @GetMapping("/info")
-    public ResponseEntity<UserResponse> getUserInfo() throws Exception {
+    public ResponseEntity<UserResponse> getUserInfo() {
         logger.info("Get user info");
         return new ResponseEntity<>(userService.getUserInfo(), HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteUser(){
+        userService.deleteUser();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
