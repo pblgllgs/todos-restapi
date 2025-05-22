@@ -19,7 +19,7 @@ public class AuthenticationRequest {
     private String email;
     @NotEmpty(message = "Email is mandatory")
     @Size(min = 3, max = 30, message = "Password must be at lest 5 characters long")
-    @Schema(example = "pass")
+    @Schema(example = "pass123")
     private String password;
 
     public String getEmail() {
