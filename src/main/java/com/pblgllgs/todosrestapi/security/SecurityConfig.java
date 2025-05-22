@@ -51,6 +51,7 @@ public class SecurityConfig {
                                         "/swagger-ui.html",
                                         "/docs"
                                 ).permitAll()
+                                .requestMatchers("/api/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exConfig ->
